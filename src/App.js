@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     fetchRestaurants();
-  }, []);
+  }, [lat, lon]);
 
   const fetchRestaurants = () => {
     fetch(
@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Search />
+        <Search setLat={setLat} setLon={setLon} />
       </div>
       <div>
         {restaurants !== null ? (

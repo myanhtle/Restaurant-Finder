@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+const API_KEY = process.env.REACT_APP_key;
 
-export default function SearchBar() {
+export default function SearchBar({ setLat, setLon }) {
   const [address, setAddress] = useState({
     street: "",
     city: "",
@@ -11,13 +12,42 @@ export default function SearchBar() {
   });
 
   const handleChange = (e) => {
-    setAddress(e.target.value);
-    console.log(e);
+    setAddress({ ...address, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(address);
+    fetchCoordinates();
+  };
+
+  const fetchCoordinates = async () => {
+    console.log(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address.street.replaceAll(
+        " ",
+        "+"
+      )},+${address.city.replaceAll(" ", "+")},+${address.state}+${
+        address.zip
+      }&key=${API_KEY}`
+    );
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${address.street.replaceAll(
+        " ",
+        "+"
+      )},+${address.city.replaceAll(" ", "+")},+${address.state}+${
+        address.zip
+      }&key=${API_KEY}`
+    )
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((obj) => {
+        if (obj.status === "OK") {
+          setLon(obj.results[0].geometry.location.lng);
+          setLat(obj.results[0].geometry.location.lat);
+        }
+        console.log(obj.results);
+        console.log(address);
+      });
   };
 
   return (
@@ -29,21 +59,39 @@ export default function SearchBar() {
             type="text"
             placeholder="1826 University Ave"
             onChange={handleChange}
-            id="streetInput"
+            id="street"
             required
           />
         </Form.Group>
         <Form.Group className="my-3 mr-1" md="6">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="Charlottesville" required />
+          <Form.Control
+            type="text"
+            placeholder="Charlottesville"
+            onChange={handleChange}
+            id="city"
+            required
+          />
         </Form.Group>
         <Form.Group className="my-3 mr-1" md="3">
           <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="VA" required />
+          <Form.Control
+            type="text"
+            placeholder="VA"
+            onChange={handleChange}
+            id="state"
+            required
+          />
         </Form.Group>
         <Form.Group className="my-3 mr-1" md="3">
           <Form.Label>Zip</Form.Label>
-          <Form.Control type="text" placeholder="22904" required />
+          <Form.Control
+            type="text"
+            placeholder="22904"
+            onChange={handleChange}
+            id="zip"
+            required
+          />
         </Form.Group>
         <Button
           className="h-40 align-self-center"
