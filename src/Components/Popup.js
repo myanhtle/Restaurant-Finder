@@ -1,7 +1,11 @@
 import React from "react";
 
-export default function Popup({ feature }) {
+export default function Popup({ feature, directions }) {
   const { id, name, description } = feature.properties;
+
+  const handleClick = (e) => {
+    directions.setDestination(feature.geometry.coordinates);
+  };
 
   return (
     <div id={`popup-${id}`}>
@@ -9,6 +13,7 @@ export default function Popup({ feature }) {
         <b>{name}</b>
       </div>
       <div>{description}</div>
+      <button onClick={handleClick}>Get Directions</button>
     </div>
   );
 }

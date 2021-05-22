@@ -22,7 +22,6 @@ export default function Map({ featuresList, lat, lon }) {
 
     const directions = new MapboxDirections({
       accessToken: mapboxgl.accessToken,
-      unit: "metric",
       profile: "mapbox/driving",
     });
 
@@ -30,6 +29,8 @@ export default function Map({ featuresList, lat, lon }) {
     map.addControl(directions, "top-left");
 
     map.on("load", () => {
+      directions.setOrigin([lon, lat]);
+      directions.interactive(false);
       map.addSource("random-points-data", {
         type: "geojson",
         data: {
@@ -38,31 +39,30 @@ export default function Map({ featuresList, lat, lon }) {
         },
       });
 
-      map.addLayer(
-        {
-          id: "random-points-layer",
-          source: "random-points-data",
-          type: "symbol",
-          layout: {
-            "icon-image": "fast-food-15",
-            "icon-padding": 0,
-            "icon-allow-overlap": true,
-          },
+      map.addLayer({
+        id: "random-points-layer",
+        source: "random-points-data",
+        type: "symbol",
+        layout: {
+          "icon-image": "fast-food-15",
+          "icon-padding": 0,
+          "icon-allow-overlap": true,
         },
-        directions.setOrigin([lon, lat])
-      );
+      });
     });
 
-    map.on("click", "random-points-layer", (e) => {
+    map.on("mouseenter", "random-points-layer", (e) => {
       if (e.features.length) {
         const feature = e.features[0];
         const popupNode = document.createElement("div");
-        ReactDOM.render(<Popup feature={feature} />, popupNode);
+        ReactDOM.render(
+          <Popup feature={feature} directions={directions} />,
+          popupNode
+        );
         popUpRef.current
           .setLngLat(feature.geometry.coordinates)
           .setDOMContent(popupNode)
           .addTo(map);
-        const end = feature.geometry.coordinates;
       }
     });
 
