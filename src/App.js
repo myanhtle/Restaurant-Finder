@@ -37,7 +37,7 @@ function App() {
       </div>
       <div>
         {restaurants !== null ? (
-          <Restaurants restaurants={restaurants} />
+          <Restaurants restaurants={restaurants} lat={lat} lon={lon} />
         ) : (
           <p>Loading...</p>
         )}

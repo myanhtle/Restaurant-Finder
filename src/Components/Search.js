@@ -46,13 +46,12 @@ export default function SearchBar({ setLat, setLon }) {
           setLat(obj.results[0].geometry.location.lat);
         }
         console.log(obj.results);
-        console.log(address);
       });
   };
 
   return (
-    <div className="d-flex justify-content-center">
-      <Form className="d-flex flex-row" onSubmit={handleSubmit}>
+    <div className="d-flex justify-content-center bg-dark">
+      <Form className="d-flex flex-row text-light" onSubmit={handleSubmit}>
         <Form.Group className="my-3 mr-1" md="6">
           <Form.Label>Street Address</Form.Label>
           <Form.Control
