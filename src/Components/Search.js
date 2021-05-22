@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Filter from "./Filter";
 const API_KEY = process.env.REACT_APP_key;
 
-export default function SearchBar({ setLat, setLon }) {
+export default function SearchBar({ filter, setFilter, setLat, setLon }) {
   const [address, setAddress] = useState({
     street: "",
     city: "",
@@ -92,6 +93,7 @@ export default function SearchBar({ setLat, setLon }) {
             required
           />
         </Form.Group>
+        <Filter filter={filter} setFilter={setFilter} />
         <Button
           className="h-40 align-self-center"
           type="submit"

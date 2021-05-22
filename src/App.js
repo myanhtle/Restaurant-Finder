@@ -6,6 +6,15 @@ const API_KEY = process.env.REACT_APP_key;
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
+  const [filter, setFilter] = useState({
+    bakery: false,
+    bar: false,
+    cafe: false,
+    restaurant: false,
+    "3-rating": false,
+    "4-rating": false,
+    "5-rating": false,
+  });
   const [lat, setLat] = useState(38.0356);
   const [lon, setLon] = useState(-78.5034);
 
@@ -33,11 +42,21 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Search setLat={setLat} setLon={setLon} />
+        <Search
+          filter={filter}
+          setFilter={setFilter}
+          setLat={setLat}
+          setLon={setLon}
+        />
       </div>
       <div>
         {restaurants !== null ? (
-          <Restaurants restaurants={restaurants} lat={lat} lon={lon} />
+          <Restaurants
+            filter={filter}
+            restaurants={restaurants}
+            lat={lat}
+            lon={lon}
+          />
         ) : (
           <p>Loading...</p>
         )}

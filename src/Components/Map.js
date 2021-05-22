@@ -8,7 +8,7 @@ import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-export default function Map({ featuresList, lat, lon }) {
+export default function Map({ filter, featuresList, lat, lon }) {
   const mapContainerRef = useRef(null);
   const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }));
 
@@ -39,12 +39,22 @@ export default function Map({ featuresList, lat, lon }) {
         },
       });
 
+      map.loadImage(
+        "https://img.icons8.com/plasticine/2x/marker.png",
+        function (error, image) {
+          if (error) throw error;
+
+          map.addImage("marker", image);
+        }
+      );
+
       map.addLayer({
         id: "random-points-layer",
         source: "random-points-data",
         type: "symbol",
         layout: {
-          "icon-image": "fast-food-15",
+          "icon-image": "marker",
+          "icon-size": 0.15,
           "icon-padding": 0,
           "icon-allow-overlap": true,
         },
@@ -68,7 +78,7 @@ export default function Map({ featuresList, lat, lon }) {
 
     console.log(featuresList, lat, lon);
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [filter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <div className="map-container" ref={mapContainerRef} />;
 }

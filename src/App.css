@@ -1,1 +1,7 @@
+.mapbox-directions-destination {
+  display: none;
+}
 
+.mapbox-directions-origin {
+  display: none;
+}
