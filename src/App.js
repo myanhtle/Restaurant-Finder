@@ -14,6 +14,9 @@ function App() {
     "3-rating": false,
     "4-rating": false,
     "5-rating": false,
+    $: false,
+    $$: false,
+    $$$: false,
   });
   const [lat, setLat] = useState(38.0356);
   const [lon, setLon] = useState(-78.5034);

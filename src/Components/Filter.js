@@ -102,6 +102,42 @@ export default function Filter({ filter, setFilter }) {
               5 Rating
             </label>
           </div>
+          <div key="inline-checkbox8" className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              value="$"
+              id="price-1"
+              onClick={handleClick}
+            />
+            <label className="form-check-label" htmlFor="price-1">
+              $
+            </label>
+          </div>
+          <div key="inline-checkbox9" className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              value="$$"
+              id="price-2"
+              onClick={handleClick}
+            />
+            <label className="form-check-label" htmlFor="price-2">
+              $$
+            </label>
+          </div>
+          <div key="inline-checkbox10" className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              value="$$$"
+              id="price-3"
+              onClick={handleClick}
+            />
+            <label className="form-check-label" htmlFor="price-3">
+              $$$
+            </label>
+          </div>
         </div>
       </DropdownButton>
     </div>
