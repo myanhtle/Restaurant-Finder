@@ -51,7 +51,7 @@ export default function SearchBar({ filter, setFilter, setLat, setLon }) {
   };
 
   return (
-    <div className="d-flex justify-content-center bg-dark">
+    <div className="d-flex justify-content-center bg-dark align-items-center">
       <Form className="d-flex flex-row text-light" onSubmit={handleSubmit}>
         <Form.Group className="my-3 mr-1" md="6">
           <Form.Label>Street Address</Form.Label>
@@ -93,14 +93,12 @@ export default function SearchBar({ filter, setFilter, setLat, setLon }) {
             required
           />
         </Form.Group>
-        <Filter filter={filter} setFilter={setFilter} />
-        <Button
-          className="h-40 align-self-center"
-          type="submit"
-          style={{ marginTop: "31px" }}
-        >
-          Search
-        </Button>
+        <div className="d-flex pb-3">
+          <Filter filter={filter} setFilter={setFilter} />
+          <Button className="align-self-end" type="submit">
+            Search
+          </Button>
+        </div>
       </Form>
     </div>
   );
