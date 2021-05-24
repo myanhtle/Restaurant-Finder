@@ -14,15 +14,10 @@
 }
 
 .listings {
-  height: 100%;
-  overflow: auto;
   padding-bottom: 60px;
   width: 80%;
+  overflow-y: scroll;
   word-wrap: break-word;
-}
-
-.item {
-  border-bottom: 1px solid #eee;
 }
 
 .map-container {

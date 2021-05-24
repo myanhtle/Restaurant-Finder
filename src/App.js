@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Restaurants from "./Components/Restaurants";
 import Search from "./Components/Search";
+import Spinner from "react-bootstrap/Spinner";
 const API_KEY = process.env.REACT_APP_key;
 
 function App() {
@@ -61,7 +62,9 @@ function App() {
             lon={lon}
           />
         ) : (
-          <p>Loading...</p>
+          <div className="d-flex justify-content-center p-3">
+            <Spinner animation="border" size="lg" variant="primary" />
+          </div>
         )}
       </div>
     </div>
