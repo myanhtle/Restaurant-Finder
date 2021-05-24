@@ -58,7 +58,7 @@ export default function Restaurants({ filter, restaurants, lat, lon }) {
   };
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-end">
       <div>
         <Map
           filter={filter}

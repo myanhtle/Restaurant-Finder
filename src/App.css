@@ -5,3 +5,33 @@
 .mapbox-directions-origin {
   display: none;
 }
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  width: 30%;
+  word-wrap: break-word;
+}
+
+.listings {
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 60px;
+  width: 80%;
+  word-wrap: break-word;
+}
+
+.item {
+  border-bottom: 1px solid #eee;
+}
+
+.map-container {
+  height: 100vh;
+  width: 75.4vw;
+}
+
+.heading {
+  border-bottom: 1px solid #eee;
+  line-height: 60px;
+  padding: 0 10px;
+}

@@ -80,5 +80,22 @@ export default function Map({ filter, featuresList, lat, lon }) {
     return () => map.remove();
   }, [filter]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <div className="map-container" ref={mapContainerRef} />;
+  return (
+    <div>
+      <div className="sidebar bg-secondary text-light h-100">
+        <div className="heading">
+          <h2>Search results...</h2>
+        </div>
+        <div id="listings" className="listings d-flex flex-column p-1">
+          {featuresList.map((r) => (
+            <div className="item p-1">
+              <b>{r.properties.name}</b>
+              <li>{r.properties.description}</li>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div id="map" className="map-container" ref={mapContainerRef}></div>
+    </div>
+  );
 }
