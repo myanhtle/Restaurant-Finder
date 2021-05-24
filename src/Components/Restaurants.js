@@ -50,6 +50,7 @@ export default function Restaurants({ filter, restaurants, lat, lon }) {
             id: r.place_id,
             name: r.name,
             description: `Rating: ${r.rating}, Price Level: ${r.price_level}`,
+            address: r.vicinity,
             types: r.types,
           },
         };

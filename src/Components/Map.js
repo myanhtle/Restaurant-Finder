@@ -91,9 +91,14 @@ export default function Map({ filter, featuresList, lat, lon }) {
           className="listings d-flex flex-column p-1 h-100 bg-secondary"
         >
           {featuresList.map((r) => (
-            <div className="item p-1" key={r.properties.id}>
+            <div
+              className="item p-1"
+              key={r.properties.id}
+              style={{ borderBottom: "1px solid #eee" }}
+            >
               <b className="text-dark">{r.properties.name}</b>
-              <li>{r.properties.description}</li>
+              <p>{r.properties.address}</p>
+              <p>{r.properties.description}</p>
             </div>
           ))}
         </div>
