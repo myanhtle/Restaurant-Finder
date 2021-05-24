@@ -89,7 +89,7 @@ export default function Map({ filter, featuresList, lat, lon }) {
         <div id="listings" className="listings d-flex flex-column p-1">
           {featuresList.map((r) => (
             <div className="item p-1" key={r.properties.id}>
-              <b>{r.properties.name}</b>
+              <b className="text-dark">{r.properties.name}</b>
               <li>{r.properties.description}</li>
             </div>
           ))}
